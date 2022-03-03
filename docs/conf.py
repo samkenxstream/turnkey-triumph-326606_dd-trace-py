@@ -294,7 +294,7 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
-}
+}  # type: dict[str, str]
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
@@ -397,8 +397,6 @@ class DDTraceReleaseNotesDirective(rst.Directive):
     """
 
     has_content = True
-
-    option_spec = {}
 
     def __init__(self, *args, **kwargs):
         super(DDTraceReleaseNotesDirective, self).__init__(*args, **kwargs)
