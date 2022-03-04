@@ -414,7 +414,7 @@ class DDTraceReleaseNotesDirective(rst.Directive):
 
             r"^[\d]+\.[\d]+"
 
-        The results are a list of parsed Version's from the branch name (to make sorting/
+        The results are a list of parsed Versions from the branch name (to make sorting/
         comparing easier), along with the original ref name.
         """
         versions = []  # type: list[tuple[Version, str]]
@@ -428,7 +428,7 @@ class DDTraceReleaseNotesDirective(rst.Directive):
 
             # Get just the branch name omitting origin/
             # and make sure it matches our pattern
-            version_str = ref[20:]
+            _, _, version_str = ref.partition("refs/remotes/origin/")
             if not self._release_branch_pattern.match(version_str):
                 continue
 
@@ -471,7 +471,7 @@ class DDTraceReleaseNotesDirective(rst.Directive):
             except Exception:
                 pass
 
-        # No tags were found, exist early
+        # No tags were found, exit early
         if not tag_versions:
             return None
 
